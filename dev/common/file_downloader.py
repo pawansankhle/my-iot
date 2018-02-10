@@ -1,5 +1,8 @@
 import uos as os
 import usocket as socket
+import config
+
+_config = config.get_config()
 
 
 # todo: https
@@ -73,14 +76,14 @@ def http_get_to_file(url, path):
         except StopIteration:
             outfile.close()
 
-
-def start(url='https://github.com/pawansankhle/my-iot/blob/master/dev/esp8266_525a8a00/update.json'):
+def start(url='https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/'+ _config.get_client_id() +'/update.json'):
     try:
         import ujson as json
         response = json.loads(http_get(url))
+        print(rresponse)
         for file in response['files']:
             path = file['path']
-            url = 'http://192.168.1.107:5000/esp8266/{}'.format(path)
+            url = 'https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}'.format(path)
             http_get_to_file(url, path)
     except Exception as ex:
             print(ex)
