@@ -67,6 +67,7 @@ def http_get(url):
         print(ex)
 
     response_str = str(response, 'utf-8')
+    print(response_str)
     return response_str
 
 
@@ -101,12 +102,13 @@ def get_file_path(path):
 def start(url='https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}/update.json'.format(_config.get_client_id())):
     try:
         import ujson as json
+        print(url)
         res = http_get(url)
         response = json.loads(res)
         for file in response['files']:
-            path = get_file_path(file['path'])
+            path = file['path']
             url = 'https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}'.format(path)
-            http_get_to_file(url, path)
+            http_get_to_file(url, get_file_path(path))
     except Exception as ex:
             print(ex)
 
