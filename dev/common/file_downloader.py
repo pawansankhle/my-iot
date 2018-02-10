@@ -67,7 +67,6 @@ def http_get(url):
         print(ex)
 
     response_str = str(response, 'utf-8')
-    print(response_str)
     return response_str
 
 
@@ -83,11 +82,12 @@ def ensure_dirs(path):
 
 
 def http_get_to_file(url, path):
-    ensure_dirs(path)
+    # ensure_dirs(path)
     print(path)
     with open(path, 'w') as outfile:
         try:
             get = http_get(url)
+            print(get)
             # while True:
             #     file_bytes = get.send(None)
             outfile.write(get)
@@ -102,7 +102,7 @@ def start(url='https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/
         response = json.loads(res)
         for file in response['files']:
             path = file['path']
-            url = 'https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}/{}'.format(_config.get_client_id(), path)
+            url = 'https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}'.format(path)
             http_get_to_file(url, path)
     except Exception as ex:
             print(ex)
