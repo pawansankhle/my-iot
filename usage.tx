@@ -1,0 +1,28 @@
+######## basic set to flash esp8266 and install micropythoN  ############
+
+
+1. install pyserial if esptool is not install and you are using epstoo.py 
+	sudo apt-get install python-serial
+
+2. erase the firmware from esp2866
+	sudo python esptool.py --port /dev/ttyUSB0 erase_flash
+	
+3. upload the firmware 
+sudo python esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20171101-v1.9.3.bin
+			or
+esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect -fm dio 0 esp8266-20171101-v1.9.3.bin
+
+4. connect to esp (if picocom not install use sudo apt-get install piocom)
+picocom /dev/ttyUSB0 -b115200
+
+5. to put and get files from esp use tool ampy in tool folder 
+	- install empy using sudo python setup.py install
+	- list all files using => sudo ampy --port /dev/ttyUSB0  ls
+	- to get file from esp => sudo ampy --port /dev/ttyUSB0 get <file name>
+	- to put file on esp => sudo ampy --port /dev/ttyUSB0 put <file name>
+	- to run file on esp => sudo ampy --port /dev/ttyUSB0 run <file name>
+
+	
+
+6. to exit picocom use ctrl+a+q
+7. pir motion sensor pins => (hold straight from front ) left is ground,middle is output,right is vcc
