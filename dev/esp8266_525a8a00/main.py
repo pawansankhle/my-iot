@@ -73,7 +73,7 @@ while(True):
 		send_message = 0
 		send_motion_message()
 		
-	utime.sleep_ms(1000)
+	utime.sleep_ms(100)
     
 
 

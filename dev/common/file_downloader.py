@@ -82,7 +82,7 @@ def ensure_dirs(path):
 
 
 def http_get_to_file(url, path):
-    ensure_dirs(path)
+    # ensure_dirs(path)
     print(url)
     with open(path, 'w') as outfile:
         try:
@@ -95,13 +95,16 @@ def http_get_to_file(url, path):
             print(ex)
             outfile.close()
 
+def get_file_path(path):
+    return path.split("/")[-1]
+
 def start(url='https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}/update.json'.format(_config.get_client_id())):
     try:
         import ujson as json
         res = http_get(url)
         response = json.loads(res)
         for file in response['files']:
-            path = file['path']
+            path = get_file_path(file['path'])
             url = 'https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}'.format(path)
             http_get_to_file(url, path)
     except Exception as ex:
