@@ -32,6 +32,8 @@ init(){
         ampy --port /dev/ttyUSB0 put mqtt_writer.py
         echo "coping logger.py..."
         ampy --port /dev/ttyUSB0 put logger.py
+        echo "coping file upload.py..."
+        ampy --port /dev/ttyUSB0 put file_downloader.py
         cd ${OLD_PATH}
     fi
 

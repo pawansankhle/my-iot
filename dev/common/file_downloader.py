@@ -1,4 +1,3 @@
-import ujson as json
 import uos as os
 import usocket as socket
 
@@ -75,12 +74,16 @@ def http_get_to_file(url, path):
             outfile.close()
 
 
-def start(url='http://192.168.1.107:5000/esp8266/files.json'):
-    response = json.loads(http_get(url))
-    for file in response['files']:
-        path = file['path']
-        url = 'http://192.168.1.107:5000/esp8266/{}'.format(path)
-        http_get_to_file(url, path)
+def start(url='https://github.com/pawansankhle/my-iot/blob/master/dev/esp8266_525a8a00/update.json'):
+    try:
+        import ujson as json
+        response = json.loads(http_get(url))
+        for file in response['files']:
+            path = file['path']
+            url = 'http://192.168.1.107:5000/esp8266/{}'.format(path)
+            http_get_to_file(url, path)
+    except Exception as ex:
+            print(ex)
 
 
 if __name__ == '__main__':
