@@ -13,7 +13,8 @@ class Config(object):
         "topic": b"home",
         "port": 1883,
         "ssid": "iPhone",
-        "password": "12345678"
+        "password": "12345678",
+        "github_path": "https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/"
     }
 
     def __init__(self):
@@ -56,6 +57,9 @@ class Config(object):
 
     def get_port(self):
         return self.config['port']
+
+    def get_github_repo(self):
+        return self.config['github_path']
     
 _config = None
 

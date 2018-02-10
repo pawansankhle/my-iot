@@ -65,7 +65,7 @@ def http_get(url):
         print(ex)
 
     response_str = str(response, 'utf-8')
-    print(response_str)
+    # print(response_str)
     return response_str
 
 
