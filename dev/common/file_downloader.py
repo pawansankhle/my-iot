@@ -60,9 +60,7 @@ def http_get(url):
     try:
         r = urequests.request('GET', url)
         response += r.content
-        # while True:
-        #     file_bytes = get.send(None)
-        #     response += file_bytes
+    
     except Exception as ex:
         print(ex)
 
@@ -81,19 +79,23 @@ def ensure_dirs(path):
             except OSError:
                 pass
 
+def remove_file(path):
+    if path != None:
+        try:
+            os.remove(path)
+        except OSError:
+            pass
+
 
 def http_get_to_file(url, path):
     # ensure_dirs(path)
-    print(url)
+    remove_file(path)
     with open(path, 'w') as outfile:
         try:
             get = http_get(url)
-            print(get)
-            # while True:
-            #     file_bytes = get.send(None)
             outfile.write(get)
-        except Exception as ex:
-            print(ex)
+
+        except Exception:
             outfile.close()
 
 def get_file_path(path):
@@ -102,7 +104,6 @@ def get_file_path(path):
 def start(url='https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}/update.json'.format(_config.get_client_id())):
     try:
         import ujson as json
-        print(url)
         res = http_get(url)
         response = json.loads(res)
         for file in response['files']:
