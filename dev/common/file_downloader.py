@@ -67,6 +67,7 @@ def http_get(url):
         print(ex)
 
     response_str = str(response, 'utf-8')
+    print(response_str)
     return response_str
 
 
@@ -87,7 +88,6 @@ def http_get_to_file(url, path):
     with open(path, 'w') as outfile:
         try:
             get = http_get(url)
-            print(get)
             # while True:
             #     file_bytes = get.send(None)
             outfile.write(get)
