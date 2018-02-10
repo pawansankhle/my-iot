@@ -82,8 +82,8 @@ def ensure_dirs(path):
 
 
 def http_get_to_file(url, path):
-    # ensure_dirs(path)
-    print(path)
+    ensure_dirs(path)
+    print(url)
     with open(path, 'w') as outfile:
         try:
             get = http_get(url)
