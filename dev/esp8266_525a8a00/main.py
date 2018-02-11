@@ -48,11 +48,22 @@ def send_motion_message():
 	else:
 		mqtt.on_next('motion_off')
 
+def check_update():
+	import update as update
+	update.start()
 
 # init config files
 logger.initialize_logging('micro.log')
+
+# initailize app config
 init_config()
+
+# init wifi and connect
 init_wifi()
+
+#  check new update
+check_update()
+
 import mqtt_writer as mqtt
 mqtt._connect()
 
