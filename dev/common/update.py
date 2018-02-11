@@ -80,6 +80,8 @@ def start(url='https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/
                     _logger.info('going to update file {}...'.format(path))
                     http_get_to_file(url, get_file_path(path))
                 _config.update_app_version(version)
+            else:
+                _logger.info('no update required...')
             break
         else:
             _logger.info('update failed wifi not connected...')
