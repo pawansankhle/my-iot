@@ -65,6 +65,11 @@ def is_connected():
     except:
         return False
 
+def reset_device():
+    import machine
+    _logger.info('going to reset device...')
+    machine.reset()
+
 def start(url='https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}/update.json'.format(_config.get_client_id())):
     try:
         _logger.info('cheking for update...')
@@ -80,6 +85,7 @@ def start(url='https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/
                     _logger.info('going to update file {}...'.format(path))
                     http_get_to_file(url, get_file_path(path))
                 _config.update_app_version(version)
+                reset_device()
             else:
                 _logger.info('no update required...')
             break

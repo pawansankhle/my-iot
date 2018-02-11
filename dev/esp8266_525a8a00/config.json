@@ -1,0 +1,11 @@
+{
+    "version": "0.0.0",
+    "broker": "172.20.10.2",
+    "sensor_pin": 0, 
+    "client_id": "esp8266_esp8266_525a8a00",
+    "topic": "home",
+    "port": 1883,
+    "ssid": "iPhone",
+    "password": "12345678",
+    "github_path": "https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/"
+}
