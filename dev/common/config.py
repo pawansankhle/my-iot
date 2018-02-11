@@ -7,6 +7,7 @@ log = logger.get_logger()
 
 class Config(object):
     CONFIG = {
+        "version": "0.0.0",
         "broker": "172.20.10.2",
         "sensor_pin": 0, 
         "client_id": b"esp8266_" + ubinascii.hexlify(machine.unique_id()),
@@ -39,6 +40,10 @@ class Config(object):
                 f.write(json.dumps(self.CONFIG))
         except OSError:
             log.error("Couldn't save /config.json")
+
+    def update_app_version(self, version):
+        self.CONFIG['version'] = version
+        self._save_config()
     
     def get_ssid(self):
         return self.config['ssid']
@@ -60,6 +65,9 @@ class Config(object):
 
     def get_github_repo(self):
         return self.config['github_path']
+    
+    def get_version(self):
+        return self.config['version']
     
 _config = None
 

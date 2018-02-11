@@ -41,11 +41,12 @@ def remove_file(path):
 
 def http_get_to_file(url, path):
     # ensure_dirs(path)
-    remove_file(path)
+    # remove_file(path)
     with open(path, 'w') as outfile:
         try:
             get = http_get(url)
-            outfile.write(get)
+            if get:
+                outfile.write(get)
 
         except Exception:
             outfile.close()
@@ -53,23 +54,37 @@ def http_get_to_file(url, path):
 def get_file_path(path):
     return path.split("/")[-1]
 
+def is_update_require(version):
+   return version == _config.get_version()
+
+def is_connected():
+    import network
+    _wlan = network.WLAN(network.STA_IF)
+    try:
+        return _wlan.isconnected()
+    except:
+        return False
+
 def start(url='https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}/update.json'.format(_config.get_client_id())):
     try:
         _logger.info('cheking for update...')
         import ujson as json
-        import wifi
-        if wifi.is_connected():
+        while is_connected():
             res = http_get(url)
             response = json.loads(res)
-            for file in response['files']:
-                path = file['path']
-                url = 'https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}'.format(path)
-                _logger.info('going to update file {}...'.format(path))
-                http_get_to_file(url, get_file_path(path))
+            version = response['version']
+            if not is_update_require(version):
+                for file in response['files']:
+                    path = file['path']
+                    url = 'https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/{}'.format(path)
+                    _logger.info('going to update file {}...'.format(path))
+                    http_get_to_file(url, get_file_path(path))
+                _config.update_app_version(version)
+            break
         else:
             _logger.info('update failed wifi not connected...')
     except Exception as ex:
-        _logger.error(' Error in http_get '+ str(ex))
+        _logger.error(' Error in @start '+ str(ex))
 
 
 if __name__ == '__main__':

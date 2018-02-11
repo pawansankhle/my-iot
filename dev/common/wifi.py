@@ -7,10 +7,7 @@ _log = logger.get_logger()
 _config = config.get_config()
 _ssid = _config.get_ssid()
 _password = _config.get_password()
-_wlan = None
 
-def is_connected():
-    return _wlan.isconnected()
 
 def wifi_connect(essid, password):
     # Connect to the wifi. Based on the example in the micropython
