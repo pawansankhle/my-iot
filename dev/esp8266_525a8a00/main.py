@@ -60,7 +60,6 @@ mqtt._connect()
 d1 = Pin(5, Pin.IN)
 d1.irq(handler=lambda p:pin_interrupt(), trigger=Pin.IRQ_RISING)
 
-print('going in main loop')
 while(True):
 	current_d1 = d1.value()
 	
