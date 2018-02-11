@@ -24,17 +24,13 @@ def init_config():
     import config
     config.initialize_config()
 
-# def init_motion():
-#     import motion
-#     motion.init()
-
 def pin_interrupt():
 	global motion_on, last_motion_time, send_message
 	current_d1 = d1.value()
 	
 	# Motion detected, update time
 	if (current_d1):
-		last_motion_time = utime.time();
+		last_motion_time = utime.time()
 				
 		if (motion_on == False):
 			# Motion hasn't been triggered yet, send motion on
@@ -49,7 +45,7 @@ def send_motion_message():
 		mqtt.on_next('motion_off')
 
 def check_update():
-	import update as update
+	import update
 	update.start()
 
 # init config files

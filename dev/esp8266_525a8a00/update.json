@@ -2,9 +2,6 @@
   "version": "0.0.1",
   "files": [
     {"path": "esp8266_525a8a00/main.py"},
-    {"path": "common/config.py"},
-    {"path": "common/wifi.py"},
-    {"path": "common/update.py"},
-    {"path": "common/logger.py"}
+    {"path": "common/config.py"}
   ]
 }
