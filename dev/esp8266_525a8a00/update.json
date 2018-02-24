@@ -1,7 +1,7 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.5",
   "files": [
     {"path": "esp8266_525a8a00/main.py"},
-    {"path": "common/config.py"}
+    {"path": "esp8266_525a8a00/config.json"}
   ]
 }
