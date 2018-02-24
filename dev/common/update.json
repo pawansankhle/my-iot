@@ -1,6 +1,7 @@
 {
-  "version" : "0.0.1",
+  "version" : "0.0.2",
   "files": [
-    "esp8266_525a8a00/main.py"
+    "esp8266_525a8a00/main.py",
+    "esp8266_525a8a00/config.json"
     ]
 }

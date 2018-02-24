@@ -31,7 +31,6 @@ def _connect():
 def on_next(x):
     try:
         global client
-        print()
         data = bytes(json.dumps(x), 'utf-8')
         _log.info(_topic +" " + _client_id + " " + json.dumps(x))
         client.publish('{}/{}'.format(_topic,

@@ -40,9 +40,9 @@ def pin_interrupt():
 def send_motion_message():
 	global motion_on
 	if (motion_on):
-		mqtt.on_next('motion_on')
+		mqtt.on_next('on')
 	else:
-		mqtt.on_next('motion_off')
+		mqtt.on_next('off')
 
 def check_update():
 	import update
