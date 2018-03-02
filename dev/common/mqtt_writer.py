@@ -14,6 +14,8 @@ _config = config.get_config()
 _broker = _config.get_broker()
 _port = _config.get_port()
 _client_id = _config.get_client_id()
+_broker_username = _config.get_broker_username()
+_broker_password = _config.get_broker_password()
 _topic = _config.get_topic()
 
 
@@ -22,7 +24,7 @@ def _connect():
     try:
         global client
         _log.info("Connecting to %s:%s" % (_broker, _port))
-        client = MQTTClient(_client_id, _broker)
+        client = MQTTClient(_client_id, _broker, user=_broker_username, password=_broker_password, port=_port)
         client.connect()
         _log.info("Connection successful")
     except Exception as ex:

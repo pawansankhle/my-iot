@@ -8,11 +8,13 @@ log = logger.get_logger()
 class Config(object):
     CONFIG = {
         "version": "0.0.0",
-        "broker": "172.20.10.2",
+        "broker" : "172.20.10.2",
+        "broker_username" : "iotuser",
+        "broker_password": "root",
         "sensor_pin": 0, 
         "client_id": b"esp8266_" + ubinascii.hexlify(machine.unique_id()),
-        "topic": b"home",
-        "port": 1883,
+        "topic": b"home/light",
+        "port": 10063,
         "ssid": "iPhone",
         "password": "12345678",
         "github_path": "https://raw.githubusercontent.com/pawansankhle/my-iot/master/dev/"
@@ -53,6 +55,12 @@ class Config(object):
 
     def get_broker(self):
         return self.config['broker']
+
+    def get_broker_username(self):
+        return self.config['broker_username']
+
+    def get_broker_password(self):
+        return self.config['broker_password']
 
     def get_client_id(self):
         return self.config['client_id']

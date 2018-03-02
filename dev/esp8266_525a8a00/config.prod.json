@@ -1,9 +1,8 @@
 {
     "version": "0.0.0",
-    "broker" : "m12.cloudmqtt.com",    // put host only not protocol
+    "broker" : "mqtt://m12.cloudmqtt.com",
     "broker_username" : "ukkwldeo",
     "broker_password": "2RVrpiGaqfX-",
-    "debug": true,
     "sensor_pin": 0,
     "client_id": "esp8266_525a8a00",
     "topic": "home/light",

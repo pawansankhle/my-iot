@@ -21,18 +21,20 @@ init(){
         remove_logs;
         OLD_PATH=${pwd};
         cd ${FILES_PATH}
-        echo "coping main.py..."
+        echo "[*] coping main.py..."
         ampy --port /dev/ttyUSB0 put ../esp8266_525a8a00/main.py
-        echo "coping config.py..."
+        echo "[*] coping config.py..."
         ampy --port /dev/ttyUSB0 put config.py
-        echo "coping wifi.py..."
+        echo "[*] coping wifi.py..."
         ampy --port /dev/ttyUSB0 put wifi.py
-        echo "coping mqtt_writer.py..."
+        echo "[*] coping mqtt_writer.py..."
         ampy --port /dev/ttyUSB0 put mqtt_writer.py
-        echo "coping logger.py..."
+        echo "[*] coping logger.py..."
         ampy --port /dev/ttyUSB0 put logger.py
-        echo "coping update.py..."
+        echo "[*] coping update.py..."
         ampy --port /dev/ttyUSB0 put update.py
+        echo "[*] coping config.json..."
+        ampy --port /dev/ttyUSB0 put ../esp8266_525a8a00/config.json
         cd ${OLD_PATH}
     fi
 
@@ -43,7 +45,7 @@ if [ "${1}" != "" ]; then
 	init $1
 else
 	echo "not Enough Arguments!!"
-    echo "usage: ./reset.sh {reset || files}"
+    echo "usage: ./reset.sh {firmware || files}"
 	echo "Exiting!!"
     exit 1
 fi
