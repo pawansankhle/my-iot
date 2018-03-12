@@ -30,13 +30,13 @@ def _connect():
     except Exception as ex:
         _log.error("error in _connect " + str(ex))
 
-def on_next(x):
+def on_next(x, topic = _topic, client_id = _client_id):
     try:
         global client
         data = bytes(json.dumps(x), 'utf-8')
-        _log.info(_topic +" " + _client_id + " " + json.dumps(x))
-        client.publish('{}/{}'.format(_topic,
-                                          _client_id),
+        _log.info("going to publish" + topic +"/" + client_id + " " + json.dumps(x))
+        client.publish('{}/{}'.format(topic,
+                                          client_id),
                                           data)
     except Exception as ex:
         _log.error("error in on_next" + str(ex))

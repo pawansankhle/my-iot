@@ -48,6 +48,9 @@ def check_update():
 	import update
 	update.start()
 
+def update_device_status():
+	mqtt.on_next('ONLINE','device/status')
+
 # init config files
 logger.initialize_logging('micro.log')
 
@@ -62,6 +65,8 @@ check_update()
 
 import mqtt_writer as mqtt
 mqtt._connect()
+
+update_device_status()
 
 # Setup d1 (pin 5)			
 d1 = Pin(5, Pin.IN)

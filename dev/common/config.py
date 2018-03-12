@@ -8,9 +8,9 @@ log = logger.get_logger()
 class Config(object):
     CONFIG = {
         "version": "0.0.0",
-        "broker" : "172.20.10.2",
-        "broker_username" : "iotuser",
-        "broker_password": "root",
+        "broker" : "m12.cloudmqtt.com",
+        "broker_username" : "ukkwldeo",
+        "broker_password": "2RVrpiGaqfX-",
         "sensor_pin": 0, 
         "client_id": b"esp8266_" + ubinascii.hexlify(machine.unique_id()),
         "topic": b"home/light",
