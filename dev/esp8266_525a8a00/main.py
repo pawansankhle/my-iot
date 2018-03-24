@@ -84,6 +84,7 @@ while(True):
 	if (send_message):
 		send_message = 0
 		send_motion_message()
+		update_device_status()
 		
 	utime.sleep_ms(1000)
     

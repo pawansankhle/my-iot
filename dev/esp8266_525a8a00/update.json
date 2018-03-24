@@ -1,6 +1,6 @@
 {
-  "version": "0.0.6",
+  "version": "0.0.5",
   "files": [
-    {"path": "common/config.py"}
+    {"path": "common/main.py"}
   ]
 }
