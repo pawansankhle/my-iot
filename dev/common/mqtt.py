@@ -1,4 +1,3 @@
-# Writer interface over umqtt API.
 
 from umqtt.robust import MQTTClient
 import json
@@ -19,6 +18,7 @@ _broker_password = _config.get_broker_password()
 _topic = _config.get_topic()
 
 
+client = None
 # These defaults are overwritten with the contents of /config.json by load_config()
 def _connect():
     try:
@@ -30,16 +30,8 @@ def _connect():
     except Exception as ex:
         _log.error("error in _connect " + str(ex))
 
-def on_next(x, topic = _topic, client_id = _client_id):
-    try:
-        global client
-        data = bytes(json.dumps(x), 'utf-8')
-        _log.info("going to publish" + topic +"/" + client_id + " " + json.dumps(x))
-        client.publish('{}/{}'.format(topic,
-                                          client_id),
-                                          data)
-    except Exception as ex:
-        _log.error("error in on_next" + str(ex))
+def get_connection():
+    return client
 
 def on_completed():
     global client
@@ -51,10 +43,9 @@ def on_error(e):
     _log.error("mqtt on_error: %s, disconnecting" %e)
     client.disconnect()
 
+
 def init():
     _connect()
     
 
-if __name__ == '__main__':
-    init()
-
+ 

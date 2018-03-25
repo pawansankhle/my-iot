@@ -40,16 +40,16 @@ def pin_interrupt():
 def send_motion_message():
 	global motion_on
 	if (motion_on):
-		mqtt.on_next('on')
+		pub.on_pub('on')
 	else:
-		mqtt.on_next('off')
+		pub.on_pub('off')
 
 def check_update():
 	import update
 	update.start()
 
 def update_device_status():
-	mqtt.on_next('ONLINE','device/status')
+	pub.on_pub('ONLINE','device/status')
 
 # init config files
 logger.initialize_logging('micro.log')
@@ -63,8 +63,9 @@ init_wifi()
 #  check new update
 check_update()
 
-import mqtt_writer as mqtt
+import mqtt
 mqtt._connect()
+import mqtt_pub as pub
 
 update_device_status()
 

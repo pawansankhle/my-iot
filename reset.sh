@@ -27,8 +27,10 @@ init(){
         ampy --port /dev/ttyUSB0 put config.py
         echo "[*] coping wifi.py..."
         ampy --port /dev/ttyUSB0 put wifi.py
-        echo "[*] coping mqtt_writer.py..."
-        ampy --port /dev/ttyUSB0 put mqtt_writer.py
+        echo "[*] coping mqtt.py..."
+        ampy --port /dev/ttyUSB0 put mqtt.py
+        echo "[*] coping mqtt_pub.py..."
+        ampy --port /dev/ttyUSB0 put mqtt_pub.py
         echo "[*] coping logger.py..."
         ampy --port /dev/ttyUSB0 put logger.py
         echo "[*] coping update.py..."
